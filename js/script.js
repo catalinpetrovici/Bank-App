@@ -20,7 +20,7 @@ const account2 = {
 };
 
 const account3 = {
-  owner: 'Stefan S',
+  owner: 'Stefan Stefan Cristian',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3311,
@@ -85,3 +85,15 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+const createUsernames = function (accs) {
+  // modify the objects so the elements that already exist in the accounts array // loop over accounts
+  accs.forEach((acc) => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word[0]) // create a new simple array wich only contains the initials of names it is used on
+      .join('');
+  });
+};
+createUsernames(accounts);

@@ -20,4 +20,4 @@ On going!
 # Authors
 
 - Petrovici Catalin - [Website](https://petrovicicatalin.com/)
-- Jonas Schmedtmann - The Complete JavaScript Course 2022: From Zero to Expert!
+- Jonas Schmedtmann - [The Complete JavaScript Course 2022: From Zero to Expert!](https://www.udemy.com/course/the-complete-javascript-course/)
