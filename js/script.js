@@ -1,9 +1,5 @@
 'use strict';
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// BANKIST APP
-
 // Data
 const account1 = {
   owner: 'Catalin P',
@@ -84,7 +80,18 @@ const displayMovements = function (movements) {
     // each new element would simply be added after the previous one
   });
 };
+
 displayMovements(account1.movements);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
 
 const createUsernames = function (accs) {
   // modify the objects so the elements that already exist in the accounts array // loop over accounts
