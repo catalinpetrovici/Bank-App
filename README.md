@@ -10,7 +10,7 @@ Fictitious and minimalistic online banking application that allows the users to:
 
 Log in credentials:
 
-- username: cp | password: 1122
+- username: cp | password: 1111
 - username: bc | password: 2211
 
 # Deplyment
