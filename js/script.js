@@ -70,7 +70,7 @@ const displayMovements = function (movements) {
       i + 1
     } ${type}</div>
           <div class="movements__date">3 days ago</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
         </div>
         `;
 
@@ -92,6 +92,29 @@ const calcDisplayBalance = function (movements) {
 };
 
 calcDisplayBalance(account1.movements);
+
+function calcDisplaySummary(movements) {
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter((mov) => mov < 0)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * 1.2) / 100)
+    .filter((intere, i, arr) => {
+      console.log(arr);
+      return intere >= 1;
+    })
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  labelSumInterest.textContent = `${interest}€`;
+}
+calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accs) {
   // modify the objects so the elements that already exist in the accounts array // loop over accounts
