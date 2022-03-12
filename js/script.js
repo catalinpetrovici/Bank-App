@@ -158,6 +158,7 @@ btnLogin.addEventListener('click', function (event) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Update UI
     updateUi(currentAccount);
   }
 });
@@ -177,8 +178,32 @@ btnTransfer.addEventListener('click', function (event) {
     receiverAcc?.username !== currentAccount.username
   ) {
     console.log('Transfer Valid');
+
+    // Doing the transfer
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
+
+    // Update UI
     updateUi(currentAccount);
   }
+});
+
+btnClose.addEventListener('click', function (event) {
+  event.preventDefault();
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+
+    // splice mutates
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
 });
