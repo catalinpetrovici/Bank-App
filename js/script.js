@@ -81,8 +81,6 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
-
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
@@ -91,30 +89,26 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = `${balance} EUR`;
 };
 
-calcDisplayBalance(account1.movements);
-
-function calcDisplaySummary(movements) {
-  const incomes = movements
+function calcDisplaySummary(acc) {
+  const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter((mov) => mov < 0)
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter((mov) => mov > 0)
-    .map((deposit) => (deposit * 1.2) / 100)
+    .map((deposit) => (deposit * acc.interestRate) / 100)
     .filter((intere, i, arr) => {
-      console.log(arr);
       return intere >= 1;
     })
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   labelSumInterest.textContent = `${interest}€`;
 }
-calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accs) {
   // modify the objects so the elements that already exist in the accounts array // loop over accounts
@@ -127,3 +121,37 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
+
+// Event Handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function (event) {
+  // Prevent form from submitting
+  event.preventDefault();
+
+  currentAccount = accounts.find(
+    (acc) => acc.username === inputLoginUsername.value
+  );
+  // optional chaining '?.' if currentAccount exists
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    //
+    //Display UI and message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(
+      ' '[0]
+    )}`;
+    containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
