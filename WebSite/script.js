@@ -7,8 +7,11 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
-const openModal = function () {
+const openModal = function (event) {
+  event.preventDefault();
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
@@ -18,8 +21,7 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++)
-  btnsOpenModal[i].addEventListener('click', openModal);
+btnsOpenModal.forEach((btn) => btn.addEventListener('click', openModal));
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -30,27 +32,19 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-function likes(names) {
-  if (names.length === 0) console.log(`no one likes this`);
-  else {
-    const message = [...names];
-    console.log(`${message.replace('', 'and')} likes this`);
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  // where the event actually happened
+  console.log(e.target); // it's stored in event target
+
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    e.preventDefault();
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
-}
+});
 
-likes([]);
-likes(['Peter']);
-
-// function likes (names) {
-//   if (names.length === 0) {
-//     return 'no one likes this';
-//   } else if (names.length === 1) {
-//     return `${[...names].join(' and ')} likes this`;
-//   } else if (names.length === 2) {
-//     return `${[...names].join(' and ')} like this`;
-//   } else if (names.length === 3) {
-//     return `${[...names].slice(0,2).join(', ')} and ${[...names].slice(2)} like this`;
-//   } else if (names.length > 3) {
-//     return `${[...names].slice(0,2).join(', ')} and ${names.length - 2} others like this`;
-//   }
-// }
+// Btn scroll
+btnScrollTo.addEventListener('click', () => {
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
