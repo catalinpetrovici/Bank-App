@@ -48,3 +48,27 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 btnScrollTo.addEventListener('click', () => {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// Tabbed component
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', (event) => {
+  const clicked = event.target.closest('.operations__tab');
+
+  // Guard clause
+  if (!clicked) return;
+
+  tabs.forEach((t) => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach((c) => c.classList.remove('operations__content--active'));
+
+  // Activate tab
+  clicked.classList.add('operations__tab--active');
+
+  // Activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
