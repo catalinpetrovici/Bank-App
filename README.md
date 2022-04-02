@@ -15,7 +15,8 @@ Log in credentials:
 
 # Deplyment
 
-On going!
+Website: https://bankappweb-catalin.netlify.app/
+Application: https://bankappapp-catalin.netlify.app/
 
 # Authors
 
