@@ -1,5 +1,9 @@
 # Bank-App
 
+| Website | Application |
+|---|---|
+| https://bankappweb-catalin.netlify.app/ | https://bankappapp-catalin.netlify.app/ |
+
 Fictitious and minimalistic online banking application that allows the users to:
 
 - Log in with a username and password
@@ -10,16 +14,24 @@ Fictitious and minimalistic online banking application that allows the users to:
 
 Log in credentials:
 
-- username: cp | password: 1111
-- username: bc | password: 2211
+| username | password |
+|---|---|
+| cp | bc |
+| 1111 | 2211 |
 
-# Deplyment
+![Bank-App1](https://user-images.githubusercontent.com/73588411/168165623-800b6a1b-c2c8-4438-9d86-c58048ad82c1.jpg)
 
-Website: https://bankappweb-catalin.netlify.app/
+# How It's Made:
+Tech used: HTML, CSS, JavaScript
 
-Application: https://bankappapp-catalin.netlify.app/
+# Optimizations:
 
-# Authors
+- Mobile friendly
+- OOP
 
-- Petrovici Catalin - [Website](https://petrovicicatalin.com/)
-- Jonas Schmedtmann - [The Complete JavaScript Course 2022: From Zero to Expert!](https://www.udemy.com/course/the-complete-javascript-course/)
+
+# Footage:
+
+https://user-images.githubusercontent.com/73588411/168168581-2768221f-9c07-4adb-9a8d-df5904863ef3.mp4
+
+
